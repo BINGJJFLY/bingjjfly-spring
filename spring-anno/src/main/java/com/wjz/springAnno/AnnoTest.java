@@ -31,4 +31,26 @@ public class AnnoTest {
 			System.out.println(name);
 		}
 	}
+	
+	@Test
+	public void scope() {
+		Person p = (Person) ctx.getBean("person");
+		Person scope = (Person) ctx.getBean("scope");
+		System.out.println(p == scope);
+	}
+	
+	@Test
+	public void _import() {
+		scan();
+	}
+	
+	@Test
+	public void factoryBean() {
+		scan();
+		Object bean = ctx.getBean("colorFactoryBean");
+		System.out.println(bean.getClass());
+		// factoryBean本身
+		bean = ctx.getBean("&colorFactoryBean");
+		System.out.println(bean.getClass());
+	}
 }
