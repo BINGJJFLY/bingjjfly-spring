@@ -1,6 +1,8 @@
-package com.wjz.springAnno.bean;
+package com.wjz.springAnno.condition;
 
 import org.springframework.beans.factory.FactoryBean;
+
+import com.wjz.springAnno.bean.Color;
 
 public class ColorFactoryBean implements FactoryBean<Color> {
 

@@ -1,21 +1,15 @@
 package com.wjz.springAnno.config;
 
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
-import org.springframework.context.annotation.ComponentScan.Filter;
 import org.springframework.context.annotation.Conditional;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.FilterType;
 import org.springframework.context.annotation.Import;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 import com.wjz.springAnno.bean.Color;
-import com.wjz.springAnno.bean.ColorFactoryBean;
 import com.wjz.springAnno.bean.Person;
-import com.wjz.springAnno.condition.LinuxCondition;
+import com.wjz.springAnno.condition.ColorFactoryBean;
 import com.wjz.springAnno.condition.MyImportBeanDefinitionRegistrar;
 import com.wjz.springAnno.condition.MyImportSelector;
 import com.wjz.springAnno.condition.WindowsCondition;

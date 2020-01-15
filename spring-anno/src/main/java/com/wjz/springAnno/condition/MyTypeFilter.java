@@ -1,4 +1,4 @@
-package com.wjz.springAnno.config;
+package com.wjz.springAnno.condition;
 
 import java.io.IOException;
 

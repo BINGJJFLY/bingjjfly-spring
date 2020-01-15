@@ -7,6 +7,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 
 import com.wjz.springAnno.bean.Person;
 import com.wjz.springAnno.config.Config;
+import com.wjz.springAnno.config.LifeCycleConfig;
 
 public class AnnoTest {
 	
@@ -52,5 +53,12 @@ public class AnnoTest {
 		// factoryBean本身
 		bean = ctx.getBean("&colorFactoryBean");
 		System.out.println(bean.getClass());
+	}
+	
+	@Test
+	public void lifeCycle() {
+		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
+		ctx.getBean("car");
+		ctx.close();
 	}
 }
