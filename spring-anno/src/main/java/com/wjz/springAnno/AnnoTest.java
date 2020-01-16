@@ -4,8 +4,11 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.core.env.Environment;
 
+import com.wjz.springAnno.bean.DataSource;
 import com.wjz.springAnno.bean.Person;
+import com.wjz.springAnno.bean.Prop;
 import com.wjz.springAnno.config.Config;
 import com.wjz.springAnno.config.LifeCycleConfig;
 
@@ -60,5 +63,34 @@ public class AnnoTest {
 		AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(LifeCycleConfig.class);
 		ctx.getBean("car");
 		ctx.close();
+	}
+	
+	@Test
+	public void prop() {
+		Prop prop = (Prop) ctx.getBean("prop");
+		System.out.println(prop);
+		Environment env = ctx.getEnvironment();
+		System.out.println(env.getProperty("prop.lastName"));
+	}
+	
+	/**
+	 * Aware接口的子接口，组件实现这些接口时会自动注入相关组件
+	 * xxxAware使用xxxProcessor，后置处理器
+	 */
+	@Test
+	public void aware() {
+		
+	}
+	
+	@Test
+	public void profile() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.getEnvironment().setActiveProfiles("prod");
+		context.register(Config.class);
+		context.refresh();
+		String[] names = context.getBeanNamesForType(DataSource.class);
+		for (int i = 0; i < names.length; i++) {
+			System.out.println(names[i]);
+		}
 	}
 }
