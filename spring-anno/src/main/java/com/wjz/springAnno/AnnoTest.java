@@ -3,6 +3,7 @@ package com.wjz.springAnno;
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationEvent;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.core.env.Environment;
 
@@ -12,6 +13,7 @@ import com.wjz.springAnno.bean.Person;
 import com.wjz.springAnno.bean.Prop;
 import com.wjz.springAnno.config.AspectsConfig;
 import com.wjz.springAnno.config.Config;
+import com.wjz.springAnno.config.ExtConfig;
 import com.wjz.springAnno.config.LifeCycleConfig;
 import com.wjz.springAnno.config.TxConfig;
 import com.wjz.springAnno.service.PersonService;
@@ -113,6 +115,20 @@ public class AnnoTest {
 		PersonService service = context.getBean(PersonService.class);
 		service.insert();
 		
+		context.close();
+	}
+	
+	@Test
+	public void beanFactoryPostProcessor() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ExtConfig.class);
+		context.close();
+	}
+	
+	@Test
+	public void applicationListener() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(ExtConfig.class);
+		context.publishEvent(new ApplicationEvent(new String("发布事件")) {
+		});
 		context.close();
 	}
 }
