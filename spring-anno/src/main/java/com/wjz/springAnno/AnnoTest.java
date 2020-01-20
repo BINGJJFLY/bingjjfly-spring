@@ -13,6 +13,8 @@ import com.wjz.springAnno.bean.Prop;
 import com.wjz.springAnno.config.AspectsConfig;
 import com.wjz.springAnno.config.Config;
 import com.wjz.springAnno.config.LifeCycleConfig;
+import com.wjz.springAnno.config.TxConfig;
+import com.wjz.springAnno.service.PersonService;
 
 public class AnnoTest {
 	
@@ -101,6 +103,16 @@ public class AnnoTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AspectsConfig.class);
 		Compute compute = context.getBean(Compute.class);
 		compute.div(1, 0);
+		context.close();
+	}
+	
+	@Test
+	public void tx() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(TxConfig.class);
+		
+		PersonService service = context.getBean(PersonService.class);
+		service.insert();
+		
 		context.close();
 	}
 }
