@@ -3,10 +3,11 @@ package com.wjz.springAnno.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
-import org.springframework.context.annotation.ImportBeanDefinitionRegistrar;
 
 import com.wjz.springAnno.aop.Compute;
 import com.wjz.springAnno.aop.LogAspects;
+import com.wjz.springAnno.aop.Logging;
+import com.wjz.springAnno.aop.LogicScanner;
 
 /**
  * 1、导入AOP模块：spring-aspects
@@ -45,4 +46,13 @@ public class AspectsConfig {
 		return new LogAspects();
 	}
 
+	@Bean
+	public Logging logging() {
+		return new Logging();
+	}
+	
+	@Bean
+	public LogicScanner logicScanner() {
+		return new LogicScanner();
+	}
 }

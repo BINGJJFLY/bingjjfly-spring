@@ -8,6 +8,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.core.env.Environment;
 
 import com.wjz.springAnno.aop.Compute;
+import com.wjz.springAnno.aop.Logging;
 import com.wjz.springAnno.bean.DataSource;
 import com.wjz.springAnno.bean.Person;
 import com.wjz.springAnno.bean.Prop;
@@ -105,6 +106,15 @@ public class AnnoTest {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AspectsConfig.class);
 		Compute compute = context.getBean(Compute.class);
 		compute.div(1, 0);
+		context.close();
+	}
+	
+	@Test
+	public void aop() {
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(AspectsConfig.class);
+		Logging logging = context.getBean(Logging.class);
+		System.out.println("Bean对象的类型："+logging.getClass().getName());
+		logging.log("logging...");
 		context.close();
 	}
 	
