@@ -12,6 +12,15 @@ import org.springframework.stereotype.Component;
 
 import com.wjz.springAnno.bean.Blue;
 
+/**
+ * 1、AbstractApplicationContext#refresh方法
+ * 	// Invoke factory processors registered as beans in the context.
+ * 	invokeBeanFactoryPostProcessors(beanFactory);
+ * 
+ * @see org.mybatis.spring.mapper.MapperScannerConfigurer
+ * @author iss002
+ *
+ */
 @Component
 public class MyBeanDefinitionRegistryPostProcessor implements BeanDefinitionRegistryPostProcessor {
 
