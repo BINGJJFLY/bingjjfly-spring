@@ -16,20 +16,22 @@ public class LogicInterceptor implements MethodInterceptor {
 	@Override
 	public Object invoke(MethodInvocation invocation) throws Throwable {
 		String methodName = null;
-		List<Parameter> args = null;
+		List<Parameter> parameters = null;
+		List<Object> args = null;
 		try {
 			Class<?> targetClass = (invocation.getThis() != null ? AopUtils.getTargetClass(invocation.getThis())
 					: null);
 			Method specificMethod = ClassUtils.getMostSpecificMethod(invocation.getMethod(), targetClass);
 			final Method method = BridgeMethodResolver.findBridgedMethod(specificMethod);
 			methodName = method.getName();
-			args = Arrays.asList(method.getParameters());
-			System.out.println("准备执行方法[" + methodName + "]，参数[" + args + "]");
+			parameters = Arrays.asList(method.getParameters());
+			args = Arrays.asList(invocation.getArguments());
+			System.out.println("准备执行方法[" + methodName + "]，参数类型[" + parameters + "]，参数[" + args + "]");
 			Object result = invocation.proceed();
-			System.out.println("执行方法[" + methodName + "]，参数[" + args + "]完毕");
+			System.out.println("执行方法[" + methodName + "]，参数类型[" + parameters + "]，参数[" + args + "]完毕");
 			return result;
 		} catch (Exception e) {
-			System.out.println("执行方法[" + methodName + "]，参数[" + args + "]时异常"+ e);
+			System.out.println("执行方法[" + methodName + "]，参数[" + args + "]时异常" + e);
 			throw new RuntimeException(e);
 		}
 	}
